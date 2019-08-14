@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloController {
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(name = "name")String name){
-        return null;
+    @GetMapping("/")
+    public String hello( ){
+        return "index";
     }
 }
