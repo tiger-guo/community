@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @ Time: 2019/8/14 21:39
  */
 @Controller
-public class HelloController {
+public class IndexController {
 
     @GetMapping("/")
     public String hello( ){
