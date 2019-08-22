@@ -1,9 +1,8 @@
 package life.majiang.community.controller;
 
+import life.majiang.community.dto.PaginationDTO;
 import life.majiang.community.dto.QuestionDTO;
-import life.majiang.community.mapper.QuestionMapper;
 import life.majiang.community.mapper.UserMapper;
-import life.majiang.community.model.Question;
 import life.majiang.community.model.User;
 import life.majiang.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,9 @@ public class IndexController {
     QuestionService questionService;
 
     @GetMapping("/")
-    public String hello(HttpServletRequest request, Model model){
+    public String index(@RequestParam(name = "page", defaultValue = "1")Integer page,
+                        @RequestParam(name = "size", defaultValue = "2")Integer size,
+                        HttpServletRequest request, Model model){
         if(request.getCookies() != null) {
             Cookie[] cookies = request.getCookies();
             for (Cookie cookie : cookies) {
@@ -46,8 +47,8 @@ public class IndexController {
             }
         }
 
-        List<QuestionDTO> questionDTO = questionService.list();
-        model.addAttribute("questions", questionDTO);
+        PaginationDTO pagination = questionService.list(page, size);
+        model.addAttribute("pagination", pagination);
         return "index";
     }
 }
