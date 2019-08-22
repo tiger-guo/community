@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 public class Question {
-    int id;
+    Integer id;
     String title;
     String description;
     Long gmtCreate;
