@@ -15,7 +15,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">远洋社区</span>
             </button>
-            <a class="navbar-brand" href="#">远洋社区</a>
+            <a class="navbar-brand" href="/">远洋社区</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -46,5 +46,34 @@
         </div>
     </div>
 </nav>
+
+<div class="container-fluid" style="margin: 30px; background-color: white">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>发现</h2>
+            <hr>
+
+            <div class="media" th:each=" question:${questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="img-rounded" th:src="${question.user.avatarUrl}" style="width: 38px;height: 38px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <span th:text="${question.description}"/><br>
+                    <span class="text-desc"><span th:text="${question.commentCount}"/>个回复  <span th:text="${question.viewCount}"/>
+                        次浏览  <span th:text="${#dates.format(question.gmtCreate, 'yyyy-MM-dd HH:mm')}"/> </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>介绍指南</h3>
+            #######################################<br>
+            #######################################<br>
+            #######################################<br>
+        </div>
+    </div>
+</div>
 </body>
 </html>

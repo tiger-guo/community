@@ -1,15 +1,15 @@
-package life.majiang.community.model;
+package life.majiang.community.dto;
 
+import life.majiang.community.model.User;
 import lombok.Data;
 
 /**
  * @ Author:刘国虎
  * @ Company:XGLAB
- * @ Time: 2019/8/16 23:01
+ * @ Time: 2019/8/17 22:39
  */
-
 @Data
-public class Question {
+public class QuestionDTO {
     int id;
     String title;
     String description;
@@ -20,4 +20,5 @@ public class Question {
     String viewCount;
     String likeCount;
     String tag;
+    User user;
 }
