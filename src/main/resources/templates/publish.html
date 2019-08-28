@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>发布 - 远洋社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,70 +16,113 @@
 
 <div th:insert="~{include/navigation::nav}"></div>
 
-    <div class="container-fluid" style="margin: 30px; background-color: white">
-        <div class="row">
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
-                <hr>
-                <form action="/publish" method="post">
-                    <input type="hidden" name="id" th:value="${id}">
-                    <div class="form-group">
-                        <label for="title">问题标题</label>
-                        <input type="text" class="form-control" th:value="${title}" id="title"  name="title" placeholder="问题标题......" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">问题补充</label>
-                        <textarea name="description" id="description" class="form-control" th:text="${description}" cols="30" rows="10" autocomplete="off"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="tag">添加标签</label>
-                        <input type="text" class="form-control" th:value="${tag}" id="tag"  name="tag"
-                               onclick="showSelectTag()" autocomplete="off" placeholder="输入标签，以逗号隔开" >
+<div class="container-fluid" style="margin: 30px; background-color: white">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+            <form action="/publish" method="post">
+                <input type="hidden" name="id" th:value="${id}">
+                <div class="form-group">
+                    <label for="title">问题标题</label>
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题......" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充</label>
+                    <textarea name="description" id="description" class="form-control" th:text="${description}" cols="30" rows="10" autocomplete="off"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" onclick="showSelectTag()" autocomplete="off" placeholder="输入标签，以空格隔开">
 
+                    <div id="select-tag" style="display: none;margin-top: 10px;">
+                        <div class="panel panel-default" style="height: 150px;">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#direction" aria-controls="direction" role="tab" data-toggle="tab">方向</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#language" aria-controls="language" role="tab" data-toggle="tab">开发语言</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#framework" aria-controls="framework" role="tab" data-toggle="tab">平台框架</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#tools" aria-controls="tools" role="tab" data-toggle="tab">开发工具</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#sqlCache" aria-controls="sqlCache" role="tab" data-toggle="tab">数据库与缓存</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="direction">...</div>
+                                <div role="tabpanel" class="tab-pane" id="language">####</div>
 
-                        <div id="select-tag" style="display: none;margin-top: 10px;">
-                            <div class="panel panel-default" style="height: 150px;">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#direction" aria-controls="direction" role="tab" data-toggle="tab">方向</a></li>
-                                    <li role="presentation"><a href="#language" aria-controls="language" role="tab" data-toggle="tab">开发语言</a></li>
-                                    <li role="presentation"><a href="#framework" aria-controls="framework" role="tab" data-toggle="tab">平台框架</a></li>
-                                    <li role="presentation"><a href="#tools" aria-controls="tools" role="tab" data-toggle="tab">开发工具</a></li>
-                                    <li role="presentation"><a href="#sqlCache" aria-controls="sqlCache" role="tab" data-toggle="tab">数据库与缓存</a></li>
-                                </ul>
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="direction">...</div>
-                                    <div role="tabpanel" class="tab-pane" id="language">####</div>
-                                    <div role="tabpanel" class="tab-pane" id="framework">
-                                        <span class="label label-info"><span class="glyphicon glyphicon-tags" onclick="selectTag('Spring')">String</span></span>
-                                        <span class="label label-info"><span class="glyphicon glyphicon-tags" onclick="selectTag('SpringBoot')">StringBoot</span></span>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane" id="tools">####</div>
-                                    <div role="tabpanel" class="tab-pane" id="sqlCache">...</div>
+                                <div role="tabpanel" class="tab-pane" id="framework">
+                                    <span class="label label-info"><span class="glyphicon glyphicon-tags" onclick="selectTag('Spring');this.onclick=null">String</span></span>
+                                    <span class="label label-info"><span class="glyphicon glyphicon-tags" onclick="selectTag('SpringBoot');this.onclick=null">StringBoot</span></span>
                                 </div>
+                                <div role="tabpanel" class="tab-pane" id="tools">####</div>
+                                <div role="tabpanel" class="tab-pane" id="sqlCache">...</div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="container-fluid "style="margin: 30px;">
-                        <div class="row">
-                            <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12"
-                                th:text="${error}" th:if="${error != null}"></div>
-                            <button type="submit" class="btn btn-success col-lg-3 col-md-12 col-sm-12 col-xs-12"
-                                    style="float: right; margin-bottom: 15px">发布</button>
-                        </div>
+                <div class="container-fluid " style="margin: 30px;">
+                    <div class="row">
+                        <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12" th:text="${error}" th:if="${error != null}"></div>
+                        <button type="submit" class="btn btn-success col-lg-3 col-md-12 col-sm-12 col-xs-12" style="float: right; margin-bottom: 15px">发布</button>
                     </div>
+                </div>
 
-                </form>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                <h3>介绍说明指南</h3>
-                #######################################<br>
-                #######################################<br>
-                #######################################<br>
-            </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>介绍说明指南</h3> #######################################
+            <br> #######################################
+            <br> #######################################
+            <br>
         </div>
     </div>
+</div>
+<script type="text/javascript">
+    //			点击区域外隐藏下拉框
+    $('body').click(function(e) {
+        var target = $(e.target);
+        if(!target.is('#tag*') && !target.is('#select-tag *')) {
+            if($('#select-tag').is(':visible')) {
+                $('#select-tag').hide();
+                $('#tag').attr('value', '')
+                $('#tag').attr('placeholder', '输入标签，以空格隔开')
+
+            }
+        }
+    })
+
+    var content = '';
+    var txt = '';
+    function selectTag(value) {
+        content = value + ',';
+        showBiaoqian(content)
+    }
+    function showBiaoqian(index) {
+
+        txt = txt + index;
+        $('#tag').attr('value', txt);
+        $('.nav-tabs li a').click(function() {
+            txt = '';
+            $('#tag').attr('value', '')
+            $('#tag').attr('placeholder', '输入标签，以空格隔开');
+            location.reload();
+        })
+    }
+    function showSelectTag() {
+        $('#select-tag').show();
+    }
+</script>
 </body>
+
 </html>
