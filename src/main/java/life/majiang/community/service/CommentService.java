@@ -72,6 +72,7 @@ public class CommentService {
             if(question == null){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
+            comment.setCommentCount(0);
             commentMapper.insert(comment);
             question.setCommentCount(1);
             questionExtMapper.incCount(question);
@@ -83,6 +84,9 @@ public class CommentService {
 
     //添加通知
     private void createNotify(Comment comment, Long receiver, int type, Long outerId) {
+        if(receiver == comment.getCommentator()){
+            return;
+        }
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(type);

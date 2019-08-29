@@ -16,7 +16,8 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     SYS_ERROR(2006,"服务器有问题，请稍后重试"),
     COMMENT_IS_EMPTY(2007,"输入内容不能为空"),
     READ_NOTIFICATION_FATL(2008,"兄弟你想干啥！！！！"),
-    NOTIFICANTION_NOT_FOUND(2008,"这条消息大概是丢了！");
+    NOTIFICANTION_NOT_FOUND(2009,"这条消息大概是丢了！"),
+    FILE_UPLOAD_FAIL(2010,"图片上传失败！");
 
     private String message;
     private Integer code;
